@@ -2,9 +2,9 @@ package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.*;
 import jpabook.jpashop.domain.item.Book;
+import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import jpabook.jpashop.repository.OrderRepository;
-import org.aspectj.weaver.ast.Or;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
