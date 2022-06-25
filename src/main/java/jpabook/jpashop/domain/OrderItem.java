@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,16 +20,16 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "item_id")
-    private Item item; //주문 상품
+    private Item item;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
-    private Order order; //주문
+    private Order order;
 
-    private int orderPrice; //주문가격
+    private int orderPrice; //주문 가격
     private int count; //주문 수량
 
     //==생성 메서드==//
@@ -41,8 +43,8 @@ public class OrderItem {
         return orderItem;
     }
 
-    //==비지니스 로직==//
-    public void cancel() { //재고수량을 원상복귀한다
+    //==비즈니스 로직==//
+    public void cancel() {
         getItem().addStock(count);
     }
 
